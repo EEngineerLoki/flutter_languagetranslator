@@ -18,6 +18,8 @@ class Dialogbox extends StatelessWidget {
                 ),
                 hintText: 'Enter Text Here',
                 hintStyle: TextStyle(color: Colors.black),
+                labelText: 'Enter Text Here:',
+                alignLabelWithHint: true
               ),
             ),
           )

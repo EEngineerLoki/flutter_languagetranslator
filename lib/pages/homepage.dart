@@ -14,26 +14,31 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      body: Padding(
+        padding: const EdgeInsets.all(12),
+        child: ListView(
           children: [
+            const SizedBox(height: 50,),
             Container(
               color: Colors.white,
-              height: 300,
-              width: 400,
+              height: 250,
+              width: 380,
               child: const Dialogbox(),
             ),
-            const SizedBox(height: 20,)
+            const SizedBox(height: 50,)
             ,
             Container(
               color: Colors.white,
-              height: 300,
-              width: 400,
+              height: 250,
+              width: 380,
               child: const Dialogbox(),
             ),
-            const SizedBox(height: 20,),
-            const SpeakButton()
+            const SizedBox(height: 30,),
+            const SpeakButton(),
+            const SizedBox(height: 15,),
+            const Text('Tap to Submit',
+            style: TextStyle(color: Colors.blueAccent,),
+            textAlign: TextAlign.center,)
           ],
         ),
       ),

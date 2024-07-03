@@ -7,6 +7,7 @@ class SpeakButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {},
+      onLongPress: () {},
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.blue,
         shape: const CircleBorder(),
