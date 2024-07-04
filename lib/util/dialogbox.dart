@@ -29,6 +29,7 @@ class TextOutputTranslate extends StatelessWidget {
         alignLabelWithHint: true
       ),
       maxLines: 8,
+      readOnly: true,
     );
   }
 }
