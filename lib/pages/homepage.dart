@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_translator/util/dialogbox.dart';
+import 'package:flutter_translator/util/dropdown.dart';
 import 'package:flutter_translator/util/speakbutton.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,35 +11,41 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  final languages = ['English', 'French', 'German', 'Spanish'];
+  String selectedVal = 'English';
+
+  void selectedLanguage(val) {
+    setState(() {
+      selectedVal = val as String;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: Padding(
-        padding: const EdgeInsets.all(12),
+      body: Container(
+        padding: const EdgeInsets.all(25),
+        color: Colors.white,
         child: ListView(
           children: [
-            const SizedBox(height: 50,),
-            Container(
-              color: Colors.white,
-              height: 250,
-              width: 380,
-              child: const Dialogbox(),
+            DropdownLanguage(
+              languages: languages, 
+              value: selectedVal,
+              onChange: selectedLanguage,
             ),
-            const SizedBox(height: 50,)
-            ,
-            Container(
-              color: Colors.white,
-              height: 250,
-              width: 380,
-              child: const Dialogbox(),
+            const SizedBox(height: 12,),
+            const TextInputTranslate(),
+            const SizedBox(height: 20,),
+            DropdownLanguage(
+              languages: languages, 
+              value: selectedVal, 
+              onChange: selectedLanguage,
             ),
+            const SizedBox(height: 12,),
+            const TextOutputTranslate(),
             const SizedBox(height: 30,),
-            const SpeakButton(),
-            const SizedBox(height: 15,),
-            const Text('Tap to Submit',
-            style: TextStyle(color: Colors.blueAccent,),
-            textAlign: TextAlign.center,)
+            const SpeakButton()
           ],
         ),
       ),
