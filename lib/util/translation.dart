@@ -8,7 +8,7 @@ class Translations {
     'Russian',
   ];
 
-  static String getLanguageCode(String language) {
+  static getLanguageCode(String language) {
     switch(language) {
       case 'English':
         return 'en';
