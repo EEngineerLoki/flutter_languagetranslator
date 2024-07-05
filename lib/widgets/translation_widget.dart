@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_translator/api/translation_api.dart';
+import 'package:flutter_translator/util/translation.dart';
 
 class TranslationWidget extends StatefulWidget {
   final String message;
@@ -19,10 +21,35 @@ class TranslationWidget extends StatefulWidget {
 
 class _TranslationWidgetState extends State<TranslationWidget> {
 
-  String translation;
+  late String translation;
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+
+    final toLanguageCode = Translations.getLanguageCode(widget.toLanguage);
+
+    return FutureBuilder(
+      
+      future: TranslationApi.translate(widget.message, toLanguageCode), 
+      
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        switch (snapshot.connectionState) {
+          
+          case ConnectionState.waiting:
+            return buildWaiting();
+          
+          default:
+            if (snapshot.hasError) {
+              translation = 'Could not translate due to network problems';
+            } else {
+              translation = snapshot.data;
+            }
+            return widget.builder(translation);
+        }
+      });
   }
+
+  Widget buildWaiting() => 
+    // ignore: unnecessary_null_comparison
+    translation == null ? Container() : widget.builder(translation);
 }
